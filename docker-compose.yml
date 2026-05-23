@@ -1,0 +1,17 @@
+services:
+  web:
+    build:
+      context: .
+      target: dev
+    container_name: interview-prep-web
+    env_file:
+      - .env
+    environment:
+      WATCHPACK_POLLING: "true"
+    ports:
+      - "${PORT:-3000}:3000"
+    volumes:
+      - ./:/app
+      - /app/node_modules
+      - /app/.next
+    command: npm run dev -- --hostname 0.0.0.0 --port 3000
