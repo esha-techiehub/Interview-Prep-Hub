@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import { DocPageHero } from "@/app/components/docs/DocPageHero";
+import { DocsBreadcrumbs } from "@/app/components/docs/DocsBreadcrumbs";
+import { QACard } from "@/app/components/docs/QACard";
 import {
   awsConfigurationRapidFire,
   awsConfigurationSections,
@@ -27,78 +29,62 @@ export default function AwsConfigurationPage() {
   });
 
   return (
-    <main className="mx-auto min-h-screen w-full max-w-5xl px-6 py-12 md:px-10 md:py-16">
-      <nav className="flex flex-wrap gap-2">
-        <Link className="chip" href="/">
-          Home
-        </Link>
-        <Link className="chip" href="/devops">
-          DevOps
-        </Link>
-        <Link className="chip" href="/devops/aws">
-          AWS Concepts
-        </Link>
-        <span className="chip">AWS Configuration</span>
-      </nav>
+    <>
+      <DocsBreadcrumbs
+        items={[
+          { label: "Developer", href: "/" },
+          { label: "DevOps", href: "/devops" },
+          { label: "AWS Concepts", href: "/devops/aws" },
+          { label: "AWS Configuration" },
+        ]}
+      />
 
-      <section className="glass-panel mt-6 p-7 md:p-10">
-        <p className="text-sm tracking-[0.2em] text-cyan-200/85 uppercase">
-          DevOps / AWS / AWS Configuration
-        </p>
-        <h1 className="mt-4 text-3xl font-semibold tracking-tight md:text-5xl">
-          AWS Configuration Interview Questions & Answers
-        </h1>
-        <p className="mt-4 text-slate-200">
-          Focused for students and working professionals preparing for cloud and
-          DevOps interviews.
-        </p>
-      </section>
+      <DocPageHero
+        description="Focused for students and working professionals preparing for cloud and DevOps interviews."
+        title="AWS Configuration Interview Questions & Answers"
+      />
 
-      <div className="mt-6 space-y-6">
+      <div className="space-y-8">
         {numberedSections.map((section) => (
-          <section className="glass-panel p-6 md:p-8" key={section.title}>
-            <h2 className="text-2xl font-semibold text-white">{section.title}</h2>
-            <div className="mt-5 space-y-4">
+          <section key={section.title}>
+            <h2 className="mb-5 text-2xl font-bold text-gray-900">
+              {section.title}
+            </h2>
+            <div className="space-y-4">
               {section.items.map((qa) => (
-                <article
-                  className="rounded-xl border border-white/10 bg-black/20 p-5"
+                <QACard
+                  answer={<p className="leading-7">{qa.answer}</p>}
                   key={qa.question}
-                >
-                  <p className="text-xs tracking-wider text-cyan-200 uppercase">
-                    Question {qa.number}
-                  </p>
-                  <h3 className="mt-2 text-lg font-semibold text-white">
-                    {qa.question}
-                  </h3>
-                  <p className="mt-3 leading-7 text-slate-200">{qa.answer}</p>
-                </article>
+                  label={`Question ${qa.number}`}
+                  question={qa.question}
+                />
               ))}
             </div>
           </section>
         ))}
       </div>
 
-      <section className="glass-panel mt-6 p-6 md:p-8">
-        <h2 className="text-2xl font-semibold text-white">Mini Rapid-Fire</h2>
+      <section className="doc-content-section mt-8">
+        <h2 className="text-2xl font-bold text-gray-900">Mini Rapid-Fire</h2>
         <div className="mt-4 overflow-x-auto">
-          <table className="w-full text-left text-sm">
+          <table className="doc-table">
             <thead>
-              <tr className="border-b border-white/20 text-cyan-200">
-                <th className="py-3 pr-4 font-semibold">Question</th>
-                <th className="py-3 font-semibold">Short Answer</th>
+              <tr>
+                <th>Question</th>
+                <th>Short Answer</th>
               </tr>
             </thead>
             <tbody>
               {awsConfigurationRapidFire.map((item) => (
-                <tr className="border-b border-white/10" key={item.question}>
-                  <td className="py-3 pr-4 text-slate-100">{item.question}</td>
-                  <td className="py-3 text-slate-200">{item.answer}</td>
+                <tr key={item.question}>
+                  <td>{item.question}</td>
+                  <td>{item.answer}</td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
       </section>
-    </main>
+    </>
   );
 }

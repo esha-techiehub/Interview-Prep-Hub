@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import { DocHubHero } from "@/app/components/docs/DocHubHero";
+import { DocLinkCard } from "@/app/components/docs/DocLinkCard";
+import { DocSection } from "@/app/components/docs/DocSection";
+import { DocsBreadcrumbs } from "@/app/components/docs/DocsBreadcrumbs";
 
 export const metadata: Metadata = {
   title: "AWS Concepts | DevOps Interview Preparation",
@@ -24,44 +27,30 @@ const awsConcepts = [
 
 export default function AwsConceptsPage() {
   return (
-    <main className="mx-auto min-h-screen w-full max-w-5xl px-6 py-12 md:px-10 md:py-16">
-      <nav className="flex flex-wrap gap-2">
-        <Link className="chip" href="/">
-          Home
-        </Link>
-        <Link className="chip" href="/devops">
-          DevOps
-        </Link>
-        <span className="chip">AWS Concepts</span>
-      </nav>
+    <>
+      <DocsBreadcrumbs
+        items={[
+          { label: "Developer", href: "/" },
+          { label: "DevOps", href: "/devops" },
+          { label: "AWS Concepts" },
+        ]}
+      />
 
-      <section className="glass-panel mt-6 p-7 md:p-10">
-        <p className="text-sm tracking-[0.2em] text-cyan-200/85 uppercase">
-          DevOps / AWS Concepts
-        </p>
-        <h1 className="mt-4 text-3xl font-semibold tracking-tight md:text-5xl">
-          AWS Concepts
-        </h1>
-        <p className="mt-4 text-slate-200">
-          Topic-wise AWS notes and interview Q&A under DevOps. Pick a concept to
-          start preparing.
-        </p>
-      </section>
+      <DocHubHero
+        description="Topic-wise AWS notes and interview Q&A under DevOps. Pick a concept to start preparing."
+        title="AWS Concepts"
+      />
 
-      <section className="mt-6 grid gap-5 md:grid-cols-2">
+      <DocSection title="Topics">
         {awsConcepts.map((concept) => (
-          <Link
-            className="glass-panel card-hover block p-6"
+          <DocLinkCard
+            description={concept.description}
             href={concept.href}
             key={concept.href}
-          >
-            <h2 className="text-xl font-semibold text-white">{concept.title}</h2>
-            <p className="mt-3 text-sm leading-6 text-slate-200">
-              {concept.description}
-            </p>
-          </Link>
+            title={concept.title}
+          />
         ))}
-      </section>
-    </main>
+      </DocSection>
+    </>
   );
 }

@@ -1,6 +1,11 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { DocLinkCard } from "@/app/components/docs/DocLinkCard";
+import { DocPageHero } from "@/app/components/docs/DocPageHero";
+import { DocSection } from "@/app/components/docs/DocSection";
+import { DocsBreadcrumbs } from "@/app/components/docs/DocsBreadcrumbs";
+import { QACard } from "@/app/components/docs/QACard";
 import {
   getInterviewTrack,
   interviewTracks,
@@ -35,6 +40,30 @@ export async function generateMetadata({
   };
 }
 
+const devopsDeepDive = [
+  {
+    href: "/devops/aws",
+    title: "AWS Concepts",
+    description:
+      "Topic-wise AWS notes and interview Q&A under DevOps.",
+  },
+  {
+    href: "/devops/aws/aws-configuration",
+    title: "AWS Configuration",
+    description: "Credentials, regions, IAM, CLI setup — 20 Q&A.",
+  },
+  {
+    href: "/devops/aws/elastic-ip",
+    title: "Elastic IP",
+    description: "Short notes and detailed interview questions.",
+  },
+  {
+    href: "/devops/networking/smtp",
+    title: "SMTP",
+    description: "Networking and email protocol interview questions.",
+  },
+];
+
 export default async function TrackPage({ params }: TrackPageProps) {
   const { track } = await params;
   const currentTrack = getInterviewTrack(track as InterviewTrack["slug"]);
@@ -44,58 +73,60 @@ export default async function TrackPage({ params }: TrackPageProps) {
   }
 
   return (
-    <main className="mx-auto min-h-screen w-full max-w-5xl px-6 py-12 md:px-10 md:py-16">
-      <Link className="chip" href="/">
-        Back to interview hub
-      </Link>
+    <>
+      <DocsBreadcrumbs
+        items={[
+          { label: "Developer", href: "/" },
+          { label: "Interview Prep", href: "/" },
+          { label: currentTrack.name },
+        ]}
+      />
 
-      <section className="glass-panel mt-6 p-7 md:p-10">
-        <h1 className="text-3xl font-semibold tracking-tight md:text-5xl">
-          {currentTrack.name} Interview Questions and Answers
-        </h1>
-        <p className="mt-4 text-slate-200">{currentTrack.summary}</p>
-        <p className="mt-2 text-slate-300">{currentTrack.audience}</p>
-      </section>
+      <DocPageHero
+        description={`${currentTrack.summary} ${currentTrack.audience}`}
+        title={`${currentTrack.name} Interview Questions and Answers`}
+      />
 
       {currentTrack.sampleQA.length > 0 ? (
-        <section className="mt-6 space-y-4">
+        <section className="mb-12 space-y-4">
+          <h2 className="mb-5 text-2xl font-bold text-gray-900">
+            Sample Questions
+          </h2>
           {currentTrack.sampleQA.map((qa, index) => (
-            <article className="glass-panel p-6" key={qa.question}>
-              <p className="text-sm text-cyan-200">Question {index + 1}</p>
-              <h2 className="mt-2 text-xl font-semibold text-white">
-                {qa.question}
-              </h2>
-              <p className="mt-3 leading-7 text-slate-200">{qa.answer}</p>
-            </article>
+            <QACard
+              answer={<p className="leading-7">{qa.answer}</p>}
+              key={qa.question}
+              label={`Question ${index + 1}`}
+              question={qa.question}
+            />
           ))}
         </section>
       ) : null}
 
       {currentTrack.slug === "devops" ? (
-        <section className="glass-panel mt-6 p-6 md:p-8">
-          <h2 className="text-2xl font-semibold text-white">
-            DevOps Deep-Dive Sections
-          </h2>
-          <p className="mt-3 text-slate-200">
-            Continue with topic-specific interview preparation paths under
-            DevOps.
+        <DocSection title="DevOps Deep-Dive Sections">
+          {devopsDeepDive.map((item) => (
+            <DocLinkCard
+              description={item.description}
+              href={item.href}
+              key={item.href}
+              title={item.title}
+            />
+          ))}
+        </DocSection>
+      ) : (
+        <section className="doc-content-section">
+          <h2 className="text-xl font-bold text-gray-900">More content coming soon</h2>
+          <p className="mt-3 text-gray-600">
+            Additional {currentTrack.name} interview questions are being added.
+            Browse other tracks from the{" "}
+            <Link className="text-[var(--link-blue)] hover:underline" href="/">
+              documentation home
+            </Link>
+            .
           </p>
-          <div className="mt-5 flex flex-wrap gap-3">
-            <Link className="chip" href="/devops/aws">
-              DevOps → AWS Concepts
-            </Link>
-            <Link className="chip" href="/devops/aws/aws-configuration">
-              AWS Configuration
-            </Link>
-            <Link className="chip" href="/devops/aws/elastic-ip">
-              Elastic IP
-            </Link>
-            <Link className="chip" href="/devops/networking/smtp">
-              DevOps → Networking → SMTP
-            </Link>
-          </div>
         </section>
-      ) : null}
-    </main>
+      )}
+    </>
   );
 }
