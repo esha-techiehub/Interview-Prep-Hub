@@ -1,0 +1,164 @@
+@import "tailwindcss";
+
+:root {
+  color-scheme: light;
+
+  --background: #ffffff;
+  --foreground: #374151;
+  --heading: #111827;
+  --muted: #6b7280;
+  --subtle: #9ca3af;
+  --border: #e5e7eb;
+  --border-hover: #d1d5db;
+  --sidebar-bg: #fafafa;
+  --header-bg: #ffffff;
+  --card-bg: #ffffff;
+  --input-bg: #ffffff;
+  --muted-surface: #f9fafb;
+  --hover-bg: #f3f4f6;
+  --brand-purple: #844fba;
+  --brand-purple-light: #f3eef8;
+  --link-blue: #1563ff;
+  --table-row-border: #f3f4f6;
+}
+
+.dark {
+  color-scheme: dark;
+
+  --background: #111827;
+  --foreground: #e5e7eb;
+  --heading: #f9fafb;
+  --muted: #9ca3af;
+  --subtle: #6b7280;
+  --border: #374151;
+  --border-hover: #4b5563;
+  --sidebar-bg: #0f172a;
+  --header-bg: #111827;
+  --card-bg: #1f2937;
+  --input-bg: #1f2937;
+  --muted-surface: #1f2937;
+  --hover-bg: #374151;
+  --brand-purple: #a78bfa;
+  --brand-purple-light: #2e2640;
+  --link-blue: #60a5fa;
+  --table-row-border: #374151;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-heading: var(--heading);
+  --color-muted: var(--muted);
+  --color-subtle: var(--subtle);
+  --color-surface: var(--background);
+  --color-card: var(--card-bg);
+  --color-header: var(--header-bg);
+  --color-input: var(--input-bg);
+  --color-muted-surface: var(--muted-surface);
+  --color-hover: var(--hover-bg);
+  --color-brand-purple: var(--brand-purple);
+  --color-brand-purple-light: var(--brand-purple-light);
+  --color-link-blue: var(--link-blue);
+  --color-border: var(--border);
+  --color-border-hover: var(--border-hover);
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-geist-mono);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-inter), system-ui, -apple-system, sans-serif;
+}
+
+.doc-content-section {
+  margin-bottom: 2rem;
+  border-radius: 0.5rem;
+  border: 1px solid var(--border);
+  background: var(--card-bg);
+  padding: 1.5rem;
+}
+
+.doc-content-section h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--heading);
+}
+
+.doc-tag {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 9999px;
+  border: 1px solid var(--border);
+  background: var(--muted-surface);
+  padding: 0.25rem 0.75rem;
+  font-size: 0.8125rem;
+  font-weight: 500;
+  color: var(--foreground);
+}
+
+.doc-table {
+  width: 100%;
+  text-align: left;
+  font-size: 0.875rem;
+}
+
+.doc-table thead tr {
+  border-bottom: 1px solid var(--border);
+  color: var(--muted);
+}
+
+.doc-table th {
+  padding: 0.75rem 1rem 0.75rem 0;
+  font-weight: 600;
+}
+
+.doc-table td {
+  padding: 0.75rem 1rem 0.75rem 0;
+  color: var(--foreground);
+  vertical-align: top;
+}
+
+.doc-table tbody tr {
+  border-bottom: 1px solid var(--table-row-border);
+}
+
+.doc-input {
+  width: 100%;
+  border-radius: 0.375rem;
+  border: 1px solid var(--border);
+  background: var(--input-bg);
+  padding: 0.5rem 0.75rem 0.5rem 2.25rem;
+  font-size: 0.875rem;
+  color: var(--heading);
+}
+
+.doc-input::placeholder {
+  color: var(--subtle);
+}
+
+.doc-input:focus {
+  border-color: var(--brand-purple);
+  outline: 2px solid transparent;
+  box-shadow: 0 0 0 1px var(--brand-purple);
+}
+
+.doc-card {
+  display: block;
+  border-radius: 0.5rem;
+  border: 1px solid var(--border);
+  background: var(--card-bg);
+  padding: 1.25rem;
+  transition:
+    border-color 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.doc-card:hover {
+  border-color: var(--border-hover);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.dark .doc-card:hover {
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
