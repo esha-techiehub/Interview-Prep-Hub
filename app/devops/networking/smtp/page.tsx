@@ -38,7 +38,7 @@ export default function SmtpPage() {
       />
 
       <section className="doc-content-section">
-        <h2 className="text-2xl font-bold text-gray-900">SMTP Providers</h2>
+        <h2 className="text-2xl font-bold text-heading">SMTP Providers</h2>
         <div className="mt-4 flex flex-wrap gap-2">
           {smtpProviders.map((provider) => (
             <span className="doc-tag" key={provider}>
@@ -51,7 +51,7 @@ export default function SmtpPage() {
       <div className="mt-8 space-y-8">
         {smtpQASections.map((section) => (
           <section key={section.level}>
-            <h2 className="mb-5 text-2xl font-bold text-gray-900">
+            <h2 className="mb-5 text-2xl font-bold text-heading">
               {section.level} Questions
             </h2>
             <div className="space-y-4">

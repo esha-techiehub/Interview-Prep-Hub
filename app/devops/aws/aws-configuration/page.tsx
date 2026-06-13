@@ -47,7 +47,7 @@ export default function AwsConfigurationPage() {
       <div className="space-y-8">
         {numberedSections.map((section) => (
           <section key={section.title}>
-            <h2 className="mb-5 text-2xl font-bold text-gray-900">
+            <h2 className="mb-5 text-2xl font-bold text-heading">
               {section.title}
             </h2>
             <div className="space-y-4">
@@ -65,7 +65,7 @@ export default function AwsConfigurationPage() {
       </div>
 
       <section className="doc-content-section mt-8">
-        <h2 className="text-2xl font-bold text-gray-900">Mini Rapid-Fire</h2>
+        <h2 className="text-2xl font-bold text-heading">Mini Rapid-Fire</h2>
         <div className="mt-4 overflow-x-auto">
           <table className="doc-table">
             <thead>

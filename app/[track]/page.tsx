@@ -89,7 +89,7 @@ export default async function TrackPage({ params }: TrackPageProps) {
 
       {currentTrack.sampleQA.length > 0 ? (
         <section className="mb-12 space-y-4">
-          <h2 className="mb-5 text-2xl font-bold text-gray-900">
+          <h2 className="mb-5 text-2xl font-bold text-heading">
             Sample Questions
           </h2>
           {currentTrack.sampleQA.map((qa, index) => (
@@ -116,8 +116,8 @@ export default async function TrackPage({ params }: TrackPageProps) {
         </DocSection>
       ) : (
         <section className="doc-content-section">
-          <h2 className="text-xl font-bold text-gray-900">More content coming soon</h2>
-          <p className="mt-3 text-gray-600">
+          <h2 className="text-xl font-bold text-heading">More content coming soon</h2>
+          <p className="mt-3 text-muted">
             Additional {currentTrack.name} interview questions are being added.
             Browse other tracks from the{" "}
             <Link className="text-[var(--link-blue)] hover:underline" href="/">

@@ -42,10 +42,10 @@ export default function ElasticIpPage() {
       />
 
       <section className="doc-content-section">
-        <h2 className="text-2xl font-bold text-gray-900">
+        <h2 className="text-2xl font-bold text-heading">
           Short Notes on Elastic IP Address
         </h2>
-        <ul className="mt-4 list-disc space-y-2 pl-5 leading-7 text-gray-700">
+        <ul className="mt-4 list-disc space-y-2 pl-5 leading-7 text-foreground">
           {elasticIpShortNotes.map((note) => (
             <li key={note}>{note}</li>
           ))}
@@ -53,7 +53,7 @@ export default function ElasticIpPage() {
       </section>
 
       <section className="mt-8">
-        <h2 className="mb-5 text-2xl font-bold text-gray-900">
+        <h2 className="mb-5 text-2xl font-bold text-heading">
           Interview Questions & Answers
         </h2>
         <div className="space-y-4">
@@ -69,10 +69,10 @@ export default function ElasticIpPage() {
       </section>
 
       <section className="mt-8">
-        <h2 className="mb-2 text-2xl font-bold text-gray-900">
+        <h2 className="mb-2 text-2xl font-bold text-heading">
           Scenario-Based Questions & Answers
         </h2>
-        <p className="mb-5 text-gray-600">
+        <p className="mb-5 text-muted">
           Real-world situations often asked in DevOps and cloud interviews.
         </p>
         <div className="space-y-4">

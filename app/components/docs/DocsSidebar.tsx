@@ -27,7 +27,7 @@ export function DocsSidebar() {
   }, [filter]);
 
   return (
-    <aside className="hidden w-64 shrink-0 flex-col border-r border-[var(--border)] bg-[var(--sidebar-bg)] lg:flex">
+    <aside className="hidden w-64 shrink-0 flex-col border-r border-border bg-[var(--sidebar-bg)] lg:flex">
       <Box className="sticky top-14 flex max-h-[calc(100vh-3.5rem)] flex-col overflow-y-auto px-4 py-5">
         <Link
           className="text-sm font-medium text-[var(--link-blue)] hover:underline"
@@ -39,7 +39,7 @@ export function DocsSidebar() {
         <Box className="relative mt-4">
           <svg
             aria-hidden="true"
-            className="pointer-events-none absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 text-gray-400"
+            className="pointer-events-none absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 text-subtle"
             fill="none"
             stroke="currentColor"
             strokeWidth="2"
@@ -49,7 +49,7 @@ export function DocsSidebar() {
             <path d="m21 21-4.3-4.3" />
           </svg>
           <input
-            className="w-full rounded-md border border-[var(--border)] bg-white py-2 pr-3 pl-9 text-sm text-gray-900 placeholder:text-gray-400 focus:border-[var(--brand-purple)] focus:ring-1 focus:ring-[var(--brand-purple)] focus:outline-none"
+            className="doc-input"
             onChange={(event) => setFilter(event.target.value)}
             placeholder="Filter sidebar"
             type="search"
@@ -60,7 +60,7 @@ export function DocsSidebar() {
         <nav className="mt-5 space-y-6">
           {filteredNav.map((section) => (
             <Box key={section.title}>
-              <p className="mb-2 text-xs font-semibold tracking-wide text-gray-500 uppercase">
+              <p className="mb-2 text-xs font-semibold tracking-wide text-muted uppercase">
                 {section.title}
               </p>
               <ul className="space-y-0.5">
@@ -73,7 +73,7 @@ export function DocsSidebar() {
                         className={`flex items-center gap-2 rounded-md px-2.5 py-2 text-sm transition ${
                           isActive
                             ? "bg-[var(--brand-purple-light)] font-medium text-[var(--brand-purple)]"
-                            : "text-gray-700 hover:bg-gray-100"
+                            : "text-foreground hover:bg-hover"
                         }`}
                         href={item.href}
                       >

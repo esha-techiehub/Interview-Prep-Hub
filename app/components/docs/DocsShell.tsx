@@ -8,14 +8,14 @@ type DocsShellProps = Readonly<{
 
 export function DocsShell({ children }: DocsShellProps) {
   return (
-    <>
+    <div className="min-h-screen bg-surface">
       <DocsHeader />
       <div className="mx-auto flex w-full max-w-[1440px]">
         <DocsSidebar />
-        <main className="min-w-0 flex-1 px-6 py-8 md:px-10 md:py-10">
+        <main className="min-w-0 flex-1 bg-surface px-6 py-8 md:px-10 md:py-10">
           <Box className="mx-auto max-w-4xl">{children}</Box>
         </main>
       </div>
-    </>
+    </div>
   );
 }

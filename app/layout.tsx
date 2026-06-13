@@ -1,6 +1,9 @@
 import type { Metadata } from "next";
 import { Inter, Geist_Mono } from "next/font/google";
+import Script from "next/script";
 import { DocsShell } from "@/app/components/docs/DocsShell";
+import { ThemeProvider } from "@/app/components/theme/ThemeProvider";
+import { themeInitScript } from "@/app/lib/theme";
 import "./globals.css";
 
 const inter = Inter({
@@ -28,9 +31,17 @@ export default function RootLayout({
     <html
       lang="en"
       className={`${inter.variable} ${geistMono.variable} h-full antialiased`}
+      suppressHydrationWarning
     >
-      <body className="min-h-full bg-white">
-        <DocsShell>{children}</DocsShell>
+      <head>
+        <Script id="theme-init" strategy="beforeInteractive">
+          {themeInitScript}
+        </Script>
+      </head>
+      <body className="min-h-full bg-surface text-foreground">
+        <ThemeProvider>
+          <DocsShell>{children}</DocsShell>
+        </ThemeProvider>
       </body>
     </html>
   );
